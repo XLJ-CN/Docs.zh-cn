@@ -202,7 +202,9 @@ API 参考主题的链接将指向 API 的.NET 4.5 版本。 如果你使用.NET
 
 此设置表示发送 keepalive 数据包通过空闲连接前等待的时间量。 默认值为 10 秒。 此值不能超过 1/3 的`DisconnectTimeout`值。
 
-如果你想要同时设置`DisconnectTimeout`和`KeepAlive`，将其设置`KeepAlive`后`DisconnectTimeout`。 否则为你`KeepAlive`设置将被覆盖时`DisconnectTimeout`自动设置`KeepAlive`为 1/3 的超时值。
+如果你想要同时设置`DisconnectTimeout`和`KeepAlive`，请先设置`DisconnectTimeout`之后再设置`KeepAlive`。 否则为你的`KeepAlive`设置将被覆盖为`DisconnectTimeout`的 1/3。（微软原文如此  但是我在设置时 并未覆盖而是直接报错）
+
+注：DisconnectTimeout最小值为6（我在设置为5时 直接报错）;
 
 如果你想要禁用 keepalive 功能，设置`KeepAlive`为 null。 对于长时间会自动禁用 Keepalive 功能轮询传输。
 
